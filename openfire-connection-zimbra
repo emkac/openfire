@@ -1,0 +1,68 @@
+###########################################################
+dans la section parametre profils :
+
+    Type : openldap
+    Host: addresse ip du serveur zibmra
+    Port : 389
+    Base dn : dn=ci,dc=smile
+    DN Administrateur : uid=zimbra,cn=admins,cn=zimbra
+    Mot de passe : mot de passe du compte admin
+
+Sauver et continuer 
+
+###########################################################
+Dans la section Mapping utilisateur
+
+Dans la partie avance, choisissez comme filter :
+(&(zimbraAccountStatus=active)(!(zimbraIsSystemResource=TRUE))(!(zimbraIsSystemAccount=TRUE))(!(zimbraIsExternalVirtualAccount=TRUE)))
+
+Cochez la case : Store avatar in database if not provided by LDAP.
+
+Ceci va permettre aux utilisateur de configurer leurs avatars visible par les autres dans le chat.
+Ajouter le mapping Pays a {co}
+
+Sauver et continuer 
+###########################################################
+
+Dans la section Mapping group
+
+Zimbra ne permet pas de creer des groupes. Mais on peut creer des distrubitions list qui seront nos groupes.
+Dans zimbra creer une liste de distrubutions et ajoutez-y tous les utilisateurs du domaine.
+
+Remplissez ensuite les champs dans le setup de openfire :
+
+    Champs de Groupe: cn
+    Champs Membre: zimbraMailForwardingAddress
+
+Dans les parametres avancée :
+
+    Mode posix : oui
+    Filtre de group : (objectclass=zimbraDistributionList)
+
+Sauver et continuer 
+
+###########################################################
+
+Compte Adminstrateur
+
+Entrez les uid des administrateur et clickez sur ajoutez
+Vous devriez avoir une nouvelle ligne pour chaque administrateur.
+Si cela ne marche verifiez que le serveur ldap est joignable
+
+Continuer et connectez vous a la console d’administration 
+
+###########################################################
+
+Le bon client xmpp et la video conference
+
+Un grand nombre de client xmpp sont disponibles.
+Le meilleur selon mes tests est jitsi.
+jitsi est un client xmpp qui dispose de plusieurs fonctions cles :
+
+    le partage d’ecran
+    disponible sur mac, windows, android et linux
+    creer des videos conferences
+
+Installation et configuration
+
+Telechargez jitsi pour votre plateform ici : https://jitsi.org/ 
